@@ -36,9 +36,9 @@ const NewRoom = () => {
           <Logo src={logoImg} alt="Let Me Ask" />
           <Subtitle>Criar uma nova sala</Subtitle>
           <Form>
-            <InputCodeRoom placeholder="Criar sala" />
+            <InputCodeRoom placeholder="Nome da sala" />
             <Button type="submit">
-              <SubmitText>Entrar na sala</SubmitText>
+              <SubmitText>Criar sala</SubmitText>
             </Button>
           </Form>
           <ChangeScreen>
