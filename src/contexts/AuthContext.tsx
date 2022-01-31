@@ -1,7 +1,6 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import React, { createContext, useState, useEffect, ReactNode } from "react";
-import firebaseConfig from "../services/firebase";
+import firebase from "../services/firebase";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 type AuthContextType = {
   user: User | undefined;
@@ -15,8 +14,6 @@ type User = {
 };
 
 export const AuthContext = createContext({} as AuthContextType);
-
-const firebase = initializeApp(firebaseConfig);
 
 type Props = {
   children: ReactNode;
