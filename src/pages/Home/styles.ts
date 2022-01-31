@@ -112,7 +112,7 @@ export const CreateRoomGoogle = styled.button`
 
       cursor: pointer;
 
-      transition: filter 0.2 ease-in-out;
+      transition: filter 0.2s ease-in-out;
 
       &:hover {
         filter: brightness(0.9);
