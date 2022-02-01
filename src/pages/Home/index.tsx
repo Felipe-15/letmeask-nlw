@@ -1,3 +1,7 @@
+import { FormEvent, useState } from "react";
+import { ref, get, child } from "firebase/database";
+import { database } from "../../services/firebase";
+
 import {
   Container,
   Aside,
@@ -28,12 +32,36 @@ const Home = () => {
   const { user, signIn } = useAuth();
   const navigate = useNavigate();
 
+  const [roomCode, setRoomCode] = useState("");
+
   const handleCreateRoom = async () => {
     if (!user) {
       await signIn();
     }
 
     navigate("rooms/new");
+  };
+
+  const handleJoinRoom = (event: FormEvent) => {
+    event.preventDefault();
+
+    if (!roomCode.trim()) {
+      return;
+    }
+    const dbRef = ref(database);
+
+    get(child(dbRef, `rooms/${roomCode}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          navigate(`rooms/${roomCode}`);
+        } else {
+          console.log("Nenhuma sala correspondente.");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -56,8 +84,12 @@ const Home = () => {
           <Separator>
             <SepText>ou entre em uma sala</SepText>
           </Separator>
-          <Form>
-            <InputCodeRoom placeholder="Digite o código da sala" />
+          <Form onSubmit={handleJoinRoom}>
+            <InputCodeRoom
+              placeholder="Digite o código da sala"
+              value={roomCode}
+              onChange={(event) => setRoomCode(event.target.value)}
+            />
             <Button type="submit">
               <SubmitText>Entrar na sala</SubmitText>
             </Button>

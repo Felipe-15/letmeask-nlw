@@ -5,6 +5,7 @@ import AuthContextProvider from "./contexts/AuthContext";
 
 import Home from "./pages/Home";
 import NewRoom from "./pages/NewRoom";
+import Room from "./pages/Room";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Routes>
         <Route element={<Home />} path="/" />
         <Route element={<NewRoom />} path="rooms/new" />
+        <Route element={<Room />} path="rooms/:id" />
       </Routes>
     </AuthContextProvider>
   );
