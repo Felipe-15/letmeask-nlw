@@ -12,7 +12,11 @@ export const Container = styled.div`
 export const Header = styled.header`
   ${({ theme }) => {
     return css`
-      padding: ${theme.sizes.medium};
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: ${theme.sizes.small};
       border-bottom: 1px solid #e2e2e2;
     `;
   }}
@@ -22,7 +26,8 @@ export const HeaderContent = styled.div`
   ${({ theme }) => {
     return css`
       display: flex;
-      justify-content: center;
+      flex: 1;
+      justify-content: space-between;
       align-items: center;
 
       max-width: 112rem;
@@ -34,7 +39,7 @@ export const HeaderContent = styled.div`
 export const Logo = styled.img`
   ${({ theme }) => {
     return css`
-      max-height: ${theme.sizes.large};
+      max-height: ${theme.sizes.xlarge};
     `;
   }}
 `;
@@ -79,7 +84,7 @@ export const Questions = styled.span`
     return css`
       margin-left: ${theme.sizes.small};
       background: #e559f9;
-      border-radius: 50%;
+      border-radius: 9999px;
 
       padding: ${theme.sizes.tiny} ${theme.sizes.small};
       color: #fff;
@@ -99,6 +104,8 @@ export const TextArea = styled.textarea`
     return css`
       min-height: 13rem;
       width: 100%;
+      font-family: "Roboto", sans-serif;
+      font-size: ${theme.sizes.small};
 
       padding: ${theme.sizes.small};
 
@@ -139,9 +146,12 @@ export const LoginButton = styled.button`
     return css`
       background: transparent;
       border: none;
+
       color: ${theme.colors.secondary};
-      text-decoration: underline;
       font-size: ${theme.sizes.xsmall};
+      text-decoration: underline;
+
+      cursor: pointer;
     `;
   }}
 `;

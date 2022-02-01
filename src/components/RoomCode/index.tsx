@@ -1,12 +1,22 @@
-import { Container, CopyIcon, Code } from "./styles";
+import { Container, IconContainer, CopyIcon, Code } from "./styles";
 
 import copyImg from "../../images/copy.svg";
 
-const RoomCode = () => {
+type RoomCodeProps = {
+  code: string;
+};
+
+const RoomCode = (props: RoomCodeProps) => {
+  const copyRoomCodeToClipboard = () => {
+    navigator.clipboard.writeText(props.code);
+  };
+
   return (
-    <Container>
-      <CopyIcon src={copyImg} alt="Copiar código da sala" />
-      <Code>Sala #123123442</Code>
+    <Container onClick={copyRoomCodeToClipboard}>
+      <IconContainer>
+        <CopyIcon src={copyImg} alt="Copiar código da sala" />
+      </IconContainer>
+      <Code>Sala #{props.code}</Code>
     </Container>
   );
 };
