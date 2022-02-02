@@ -40,13 +40,9 @@ export const Logo = styled.img`
   ${({ theme }) => {
     return css`
       max-height: ${theme.sizes.xlarge};
-    `;
-  }}
-`;
 
-export const CodeRoom = styled.div`
-  ${({ theme }) => {
-    return css``;
+      cursor: pointer;
+    `;
   }}
 `;
 
@@ -95,7 +91,9 @@ export const Questions = styled.span`
 
 export const Form = styled.form`
   ${({ theme }) => {
-    return css``;
+    return css`
+      margin-bottom: ${theme.sizes.large};
+    `;
   }}
 `;
 
@@ -120,6 +118,34 @@ export const TextArea = styled.textarea`
   }}
 `;
 
+export const Loading = styled.div`
+  ${({ theme }) => {
+    return css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: ${theme.sizes.big};
+      width: ${theme.sizes.big};
+
+      border-radius: 9999px;
+      border: 4px solid rgba(255, 255, 255, 0.4);
+      border-top-color: #f2f2f2;
+
+      animation: loading 1s linear infinite;
+
+      @keyframes loading {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    `;
+  }}
+`;
+
 export const FormFooter = styled.div`
   ${({ theme }) => {
     return css`
@@ -127,6 +153,37 @@ export const FormFooter = styled.div`
       justify-content: space-between;
       align-items: center;
       margin-top: ${theme.sizes.small};
+    `;
+  }}
+`;
+
+export const UserContainer = styled.div`
+  ${({ theme }) => {
+    return css`
+      display: flex;
+      align-items: center;
+    `;
+  }}
+`;
+
+export const UserAvatar = styled.img`
+  ${({ theme }) => {
+    return css`
+      height: ${theme.sizes.big};
+      width: ${theme.sizes.big};
+
+      border-radius: 50%;
+    `;
+  }}
+`;
+
+export const Username = styled.span`
+  ${({ theme }) => {
+    return css`
+      margin-left: ${theme.sizes.tiny};
+      color: ${theme.colors.content};
+      font-weight: 500;
+      font-size: 1.4rem;
     `;
   }}
 `;
@@ -153,5 +210,11 @@ export const LoginButton = styled.button`
 
       cursor: pointer;
     `;
+  }}
+`;
+
+export const QuestionsList = styled.div`
+  ${({ theme }) => {
+    return css``;
   }}
 `;

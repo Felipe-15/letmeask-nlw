@@ -15,6 +15,17 @@ export const Container = styled.button`
       border: 1px solid ${theme.colors.secondary};
 
       cursor: pointer;
+
+      transition: filter, background-color 0.2s ease-in-out;
+
+      &:hover {
+        filter: brightness(1);
+        background-color: #fafafa;
+      }
+
+      &:hover > div {
+        filter: brightness(1.1);
+      }
     `;
   }}
 `;
@@ -29,6 +40,8 @@ export const IconContainer = styled.div`
 
       background: ${theme.colors.secondary};
       padding: 0 ${theme.sizes.xsmall};
+
+      transition: filter 0.2s ease-in-out;
     `;
   }}
 `;
