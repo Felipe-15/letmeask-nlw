@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
   Container,
   Content,
@@ -5,6 +6,7 @@ import {
   AuthorContainer,
   AuthorAvatar,
   AuthorName,
+  ButtonsContainer,
 } from "./styles";
 
 type QuestionProps = {
@@ -13,18 +15,19 @@ type QuestionProps = {
     name: string;
     avatar: string;
   };
+  children?: ReactNode;
 };
 
 const Question = (props: QuestionProps) => {
   return (
     <Container>
-      {console.log("Questão carregou")}
       <Content>{props.content}</Content>
       <Footer>
         <AuthorContainer>
           <AuthorAvatar src={props.author.avatar} alt={props.author.name} />
           <AuthorName>{props.author.name}</AuthorName>
         </AuthorContainer>
+        <ButtonsContainer>{props.children}</ButtonsContainer>
       </Footer>
     </Container>
   );

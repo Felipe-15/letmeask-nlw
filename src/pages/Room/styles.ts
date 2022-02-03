@@ -1,10 +1,25 @@
 import styled, { css } from "styled-components";
 
-export const Container = styled.div`
-  ${({ theme }) => {
+interface ContainerProps {
+  noScroll: boolean;
+}
+
+interface LikeButtonProps {
+  liked?: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
+  ${({ theme, noScroll }) => {
     return css`
       height: 100vh;
       width: 100vw;
+
+      ${noScroll
+        ? () =>
+            css`
+              overflow: hidden;
+            `
+        : ""}
     `;
   }}
 `;
@@ -184,6 +199,72 @@ export const Username = styled.span`
       color: ${theme.colors.content};
       font-weight: 500;
       font-size: 1.4rem;
+    `;
+  }}
+`;
+
+export const LikeButton = styled.button<LikeButtonProps>`
+  ${({ theme, liked }) => {
+    return css`
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      background: transparent;
+      border: none;
+
+      color: ${theme.colors.lightGray};
+
+      cursor: pointer;
+
+      & svg {
+        margin-left: ${theme.sizes.tiny};
+      }
+
+      ${liked
+        ? () => css`
+            color: ${theme.colors.secondary};
+
+            & svg path {
+              stroke: ${theme.colors.secondary};
+            }
+          `
+        : ""}
+
+      transition: filter 0.2s ease-in-out;
+
+      &:hover {
+        filter: brightness(0.7);
+      }
+    `;
+  }}
+`;
+
+export const Likes = styled.span`
+  ${({ theme }) => {
+    return css``;
+  }}
+`;
+
+export const DeleteButton = styled.button`
+  ${({ theme }) => {
+    return css`
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      background: transparent;
+      border: none;
+
+      color: ${theme.colors.lightGray};
+
+      cursor: pointer;
+
+      transition: stroke 0.2s ease-in-out;
+
+      &:hover {
+        stroke: ${theme.colors.red};
+      }
     `;
   }}
 `;

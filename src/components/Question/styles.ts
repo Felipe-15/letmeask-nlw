@@ -65,3 +65,13 @@ export const AuthorName = styled.span`
     `;
   }}
 `;
+
+export const ButtonsContainer = styled.div`
+  ${({ theme }) => {
+    return css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    `;
+  }}
+`;
