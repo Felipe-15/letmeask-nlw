@@ -1,25 +1,16 @@
 import styled, { css } from "styled-components";
 
-interface ContainerProps {
-  hiddenModal: boolean;
-}
-
-export const Container = styled.div<ContainerProps>`
-  ${({ theme, hiddenModal }) => {
+export const Container = styled.div`
+  ${({ theme }) => {
     return css`
       position: fixed;
       display: flex;
       align-items: center;
       justify-content: center;
 
-      ${hiddenModal
-        ? () =>
-            css`
-              display: hidden;
-            `
-        : ""}
-
       background: rgba(0, 0, 0, 0.7);
+
+      animation: rise 0.2s linear;
 
       top: 0;
       bottom: 0;
@@ -27,6 +18,18 @@ export const Container = styled.div<ContainerProps>`
       right: 0;
 
       overflow: hidden;
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          top: 100%;
+        }
+
+        to {
+          opacity: 1;
+          top: 0;
+        }
+      }
     `;
   }}
 `;
@@ -89,7 +92,10 @@ export const Text = styled.span`
 
 export const ButtonsContainer = styled.div`
   ${({ theme }) => {
-    return css``;
+    return css`
+      display: flex;
+      padding-top: ${theme.sizes.medium};
+    `;
   }}
 `;
 
@@ -125,6 +131,10 @@ export const CancelButton = styled.button`
 export const DeleteButton = styled.button`
   ${({ theme }) => {
     return css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       padding: ${theme.sizes.xsmall} ${theme.sizes.small};
       background: ${theme.colors.red};
 
@@ -145,6 +155,34 @@ export const DeleteButton = styled.button`
 
       &:hover {
         filter: brightness(0.95);
+      }
+    `;
+  }}
+`;
+
+export const Loading = styled.div`
+  ${({ theme }) => {
+    return css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: ${theme.sizes.medium};
+      width: ${theme.sizes.medium};
+
+      border-radius: 9999px;
+      border: 4px solid rgba(255, 255, 255, 0.4);
+      border-top-color: #f2f2f2;
+
+      animation: loading 1s linear infinite;
+
+      @keyframes loading {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
       }
     `;
   }}

@@ -1,25 +1,16 @@
 import styled, { css } from "styled-components";
 
-interface ContainerProps {
-  noScroll: boolean;
-}
-
 interface LikeButtonProps {
   liked?: boolean;
 }
 
-export const Container = styled.div<ContainerProps>`
-  ${({ theme, noScroll }) => {
+export const Container = styled.div`
+  ${({ theme }) => {
     return css`
       height: 100vh;
       width: 100vw;
 
-      ${noScroll
-        ? () =>
-            css`
-              overflow: hidden;
-            `
-        : ""}
+      overflow-x: hidden;
     `;
   }}
 `;
@@ -243,29 +234,6 @@ export const LikeButton = styled.button<LikeButtonProps>`
 export const Likes = styled.span`
   ${({ theme }) => {
     return css``;
-  }}
-`;
-
-export const DeleteButton = styled.button`
-  ${({ theme }) => {
-    return css`
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-
-      background: transparent;
-      border: none;
-
-      color: ${theme.colors.lightGray};
-
-      cursor: pointer;
-
-      transition: stroke 0.2s ease-in-out;
-
-      &:hover {
-        stroke: ${theme.colors.red};
-      }
-    `;
   }}
 `;
 

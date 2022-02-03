@@ -42,7 +42,7 @@ const NewRoom = () => {
       authorId: user?.id,
     });
 
-    navigate(`/rooms/${refResult.key}`);
+    navigate(`/admin/rooms/${refResult.key}`);
   };
 
   return (

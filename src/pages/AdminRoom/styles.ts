@@ -103,6 +103,33 @@ export const Questions = styled.span`
   }}
 `;
 
+export const DeleteButton = styled.button`
+  ${({ theme }) => {
+    return css`
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      background: transparent;
+      border: none;
+
+      color: ${theme.colors.lightGray};
+
+      margin-left: ${theme.sizes.xsmall};
+
+      cursor: pointer;
+
+      svg path {
+        transition: stroke 0.2s ease-in-out;
+      }
+
+      &:hover svg path {
+        stroke: ${theme.colors.red};
+      }
+    `;
+  }}
+`;
+
 export const QuestionsList = styled.div`
   ${({ theme }) => {
     return css``;

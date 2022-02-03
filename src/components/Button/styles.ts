@@ -27,7 +27,15 @@ export const Container = styled.button<ButtonProps>`
       transition: filter 0.2s ease-in-out;
 
       &:not(:disabled):hover {
-        filter: brightness(0.9);
+        ${isOutlined
+          ? () =>
+              css`
+                filter: brightness(0.95);
+              `
+          : () =>
+              css`
+                filter: brightness(0.9);
+              `};
       }
 
       &:disabled {
