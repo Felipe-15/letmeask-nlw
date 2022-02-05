@@ -5,7 +5,11 @@ export const Container = styled.div`
     return css`
       display: flex;
       align-items: stretch;
-      height: 100vh;
+      min-height: 100vh;
+
+      ${theme.media.mobile} {
+        flex-direction: column-reverse;
+      }
     `;
   }}
 `;
@@ -17,6 +21,8 @@ export const Aside = styled.aside`
       flex-direction: column;
       justify-content: center;
       flex: 7;
+
+      min-height: 100vh;
 
       background: ${theme.colors.secondary};
       color: #fff;
@@ -63,6 +69,7 @@ export const Main = styled.main`
       align-items: center;
       justify-content: center;
       flex: 8;
+      min-height: 100vh;
 
       padding: ${theme.sizes.big};
     `;
@@ -114,7 +121,8 @@ export const CreateRoomGoogle = styled.button`
 
       transition: filter 0.2s ease-in-out;
 
-      &:hover {
+      &:hover,
+      &:active {
         filter: brightness(0.9);
       }
     `;

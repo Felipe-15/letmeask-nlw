@@ -26,7 +26,8 @@ export const Container = styled.button<ButtonProps>`
 
       transition: filter 0.2s ease-in-out;
 
-      &:not(:disabled):hover {
+      &:not(:disabled):hover,
+      &:not(:disabled)&:active {
         ${isOutlined
           ? () =>
               css`

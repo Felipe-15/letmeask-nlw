@@ -1,13 +1,35 @@
 import styled, { css } from "styled-components";
 
-export const Container = styled.div`
-  ${({ theme }) => {
+interface QuestionProps {
+  isAnswered?: boolean;
+  isHighlighted?: boolean;
+}
+
+export const Container = styled.div<QuestionProps>`
+  ${({ theme, isAnswered, isHighlighted }) => {
     return css`
       padding: ${theme.sizes.medium};
 
       background: #fefefe;
       border-radius: ${theme.sizes.tiny};
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+
+      ${isHighlighted && !isAnswered
+        ? () => css`
+            background: #f4f0ff;
+            border: 1px solid ${theme.colors.secondary};
+
+            span {
+              color: ${theme.colors.content};
+            }
+          `
+        : ""}
+
+      ${isAnswered
+        ? () => css`
+            background: #dbdcdd;
+          `
+        : ""}
 
       & + & {
         margin-top: ${theme.sizes.tiny};

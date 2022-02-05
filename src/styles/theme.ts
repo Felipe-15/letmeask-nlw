@@ -23,6 +23,10 @@ const theme = {
     xhuge: "7.2rem",
     giant: "12.8rem",
   },
+
+  media: {
+    mobile: "@media (max-width:768px)",
+  },
 };
 
 export default theme;

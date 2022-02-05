@@ -11,6 +11,16 @@ export const Container = styled.div`
       width: 100vw;
 
       overflow-x: hidden;
+
+      ${theme.media.mobile} {
+        header {
+          padding: ${theme.sizes.small} ${theme.sizes.medium};
+        }
+
+        main {
+          padding: 0 ${theme.sizes.medium};
+        }
+      }
     `;
   }}
 `;

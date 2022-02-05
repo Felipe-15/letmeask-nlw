@@ -15,12 +15,17 @@ type QuestionProps = {
     name: string;
     avatar: string;
   };
+  isAnswered?: boolean;
+  isHighlighted?: boolean;
   children?: ReactNode;
 };
 
 const Question = (props: QuestionProps) => {
   return (
-    <Container>
+    <Container
+      isAnswered={props.isAnswered}
+      isHighlighted={props.isHighlighted}
+    >
       <Content>{props.content}</Content>
       <Footer>
         <AuthorContainer>

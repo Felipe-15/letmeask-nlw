@@ -1,10 +1,24 @@
 import styled, { css } from "styled-components";
 
+interface OptionButtonProps {
+  optionType: "answer" | "check" | "delete";
+}
+
 export const Container = styled.div`
   ${({ theme }) => {
     return css`
       height: 100vh;
       width: 100vw;
+
+      ${theme.media.mobile} {
+        header {
+          padding: ${theme.sizes.small} ${theme.sizes.medium};
+        }
+
+        main {
+          padding: 0 ${theme.sizes.medium};
+        }
+      }
     `;
   }}
 `;
@@ -45,6 +59,12 @@ export const HeaderButtonsContainer = styled.div`
 
       & button {
         margin-left: ${theme.sizes.small};
+      }
+
+      ${theme.media.mobile} {
+        button:first-child {
+          max-width: 18rem;
+        }
       }
     `;
   }}
@@ -103,8 +123,8 @@ export const Questions = styled.span`
   }}
 `;
 
-export const DeleteButton = styled.button`
-  ${({ theme }) => {
+export const OptionButton = styled.button<OptionButtonProps>`
+  ${({ theme, optionType }) => {
     return css`
       display: flex;
       align-items: flex-end;
@@ -119,14 +139,32 @@ export const DeleteButton = styled.button`
 
       cursor: pointer;
 
-      svg path {
+      svg path,
+      svg circle {
         transition: stroke 0.2s ease-in-out;
       }
 
-      &:hover svg path {
-        stroke: ${theme.colors.red};
+      &:hover svg path,
+      &:hover svg circle {
+        stroke: ${optionType === "answer"
+          ? "#23CE6B"
+          : optionType === "check"
+          ? "#EFCB68"
+          : theme.colors.red};
       }
     `;
+  }}
+`;
+
+export const HighlightIcon = styled.img`
+  ${({ theme }) => {
+    return css``;
+  }}
+`;
+
+export const AnswerIcon = styled.img`
+  ${({ theme }) => {
+    return css``;
   }}
 `;
 

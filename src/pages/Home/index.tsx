@@ -28,6 +28,13 @@ import Button from "../../components/Button";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../hooks/useAuth";
 
+type RoomData = {
+  authorId: string;
+  title: string;
+  questions?: Object[];
+  closedAt?: Date;
+};
+
 const Home = () => {
   const { user, signIn } = useAuth();
   const navigate = useNavigate();
@@ -53,7 +60,13 @@ const Home = () => {
     get(child(dbRef, `rooms/${roomCode}`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          const data = snapshot.val();
+          const data: RoomData = snapshot.val();
+
+          if (data.closedAt) {
+            alert("Esta sala já foi fechada.");
+
+            return;
+          }
           navigate(`rooms/${roomCode}`);
         } else {
           console.log("Nenhuma sala correspondente.");
@@ -79,7 +92,7 @@ const Home = () => {
           <Logo src={logoImg} alt="Let Me Ask" />
           <CreateRoomGoogle onClick={handleCreateRoom}>
             <GoogleIcon src={googleImg} alt="Logo do Google" />
-            <ButtonText>Crie sua sala com o Google.</ButtonText>
+            <ButtonText>Crie sua sala com o Google</ButtonText>
           </CreateRoomGoogle>
           <Separator>
             <SepText>ou entre em uma sala</SepText>

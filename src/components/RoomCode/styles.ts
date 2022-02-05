@@ -64,6 +64,11 @@ export const Code = styled.span`
 
       font-size: 1.4rem;
       font-weight: 500;
+
+      overflow: hidden;
+
+      word-wrap: nowrap;
+      white-space: nowrap;
     `;
   }}
 `;
