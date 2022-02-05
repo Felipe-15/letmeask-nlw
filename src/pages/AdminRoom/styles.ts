@@ -10,7 +10,7 @@ export const Container = styled.div`
       height: 100vh;
       width: 100vw;
 
-      ${theme.media.mobile} {
+      ${theme.media.tablet} {
         header {
           padding: ${theme.sizes.small} ${theme.sizes.medium};
         }
@@ -61,7 +61,7 @@ export const HeaderButtonsContainer = styled.div`
         margin-left: ${theme.sizes.small};
       }
 
-      ${theme.media.mobile} {
+      ${theme.media.tablet} {
         button:first-child {
           max-width: 18rem;
         }
@@ -171,5 +171,25 @@ export const AnswerIcon = styled.img`
 export const QuestionsList = styled.div`
   ${({ theme }) => {
     return css``;
+  }}
+`;
+
+export const NoQuestions = styled.h2`
+  ${({ theme }) => {
+    return css`
+      font-family: "Poppins", sans-serif;
+      font-size: ${theme.sizes.big};
+
+      color: ${theme.colors.content};
+    `;
+  }}
+`;
+
+export const Loading = styled.h1`
+  ${({ theme }) => {
+    return css`
+      color: ${theme.colors.content};
+      margin-top: ${theme.sizes.huge};
+    `;
   }}
 `;

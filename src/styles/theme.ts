@@ -25,7 +25,8 @@ const theme = {
   },
 
   media: {
-    mobile: "@media (max-width:768px)",
+    tablet: "@media (max-width:768px)",
+    mobile: "@media (max-width:480px)",
   },
 };
 

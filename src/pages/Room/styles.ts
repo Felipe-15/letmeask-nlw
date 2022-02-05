@@ -12,7 +12,7 @@ export const Container = styled.div`
 
       overflow-x: hidden;
 
-      ${theme.media.mobile} {
+      ${theme.media.tablet} {
         header {
           padding: ${theme.sizes.small} ${theme.sizes.medium};
         }

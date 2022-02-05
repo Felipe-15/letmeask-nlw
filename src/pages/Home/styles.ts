@@ -5,10 +5,13 @@ export const Container = styled.div`
     return css`
       display: flex;
       align-items: stretch;
-      min-height: 100vh;
 
-      ${theme.media.mobile} {
+      height: 100vh;
+      ${theme.media.tablet} {
+        min-height: 100vh;
+        height: auto;
         flex-direction: column-reverse;
+        align-items: none;
       }
     `;
   }}
@@ -20,9 +23,7 @@ export const Aside = styled.aside`
       display: flex;
       flex-direction: column;
       justify-content: center;
-      flex: 7;
-
-      min-height: 100vh;
+      flex: 1;
 
       background: ${theme.colors.secondary};
       color: #fff;
@@ -68,8 +69,11 @@ export const Main = styled.main`
       display: flex;
       align-items: center;
       justify-content: center;
-      flex: 8;
-      min-height: 100vh;
+      flex: 1;
+
+      ${theme.media.tablet} {
+        min-height: 100vh;
+      }
 
       padding: ${theme.sizes.big};
     `;
