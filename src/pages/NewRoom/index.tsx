@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { database } from "../../services/firebase";
 import { push, ref } from "firebase/database";
 import { Link } from "react-router-dom";
@@ -15,19 +15,23 @@ import {
   Logo,
   Form,
   InputCodeRoom,
-  SubmitText,
+  TogglerContainer,
 } from "../Home/styles";
 
-import { Subtitle, ChangeScreen, RoomLink } from "./styles";
+import { Subtitle, ChangeScreen } from "./styles";
 
 import illustrationImg from "../../images/illustration.svg";
 import logoImg from "../../images/logo.svg";
 import Button from "../../components/Button";
 import { useAuth } from "../../hooks/useAuth";
+import { DarkThemeContext } from "../../contexts/DarkThemeContext";
+import DarkThemeToggler from "../../components/DarkThemeToggler";
 
 const NewRoom = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { isDark } = useContext(DarkThemeContext);
+
   const [roomName, setRoomName] = useState("");
 
   const handleCreateRoom = async (event: FormEvent) => {
@@ -55,7 +59,10 @@ const NewRoom = () => {
         <Title>Crie salas Q&amp;A ao-vivo</Title>
         <Text>Tire dúvidas da sua audiência em tempo real.</Text>
       </Aside>
-      <Main>
+      <Main darkTheme={isDark}>
+        <TogglerContainer>
+          <DarkThemeToggler />
+        </TogglerContainer>
         <AuthContainer>
           <Logo src={logoImg} alt="Let Me Ask" />
           <Subtitle>Criar uma nova sala</Subtitle>
@@ -65,9 +72,7 @@ const NewRoom = () => {
               value={roomName}
               onChange={(event) => setRoomName(event.target.value)}
             />
-            <Button type="submit">
-              <SubmitText>Criar sala</SubmitText>
-            </Button>
+            <Button type="submit">Criar sala</Button>
           </Form>
           <ChangeScreen>
             Quer entrar em uma sala já existente?{" "}

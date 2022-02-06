@@ -1,5 +1,9 @@
 import styled, { css } from "styled-components";
 
+interface ThemeProps {
+  darkTheme: boolean;
+}
+
 export const Container = styled.div`
   ${({ theme }) => {
     return css`
@@ -7,6 +11,9 @@ export const Container = styled.div`
       align-items: stretch;
 
       height: 100vh;
+
+      overflow: hidden;
+
       ${theme.media.tablet} {
         min-height: 100vh;
         height: auto;
@@ -51,6 +58,7 @@ export const Title = styled.strong`
     `;
   }}
 `;
+
 export const Text = styled.p`
   ${({ theme }) => {
     return css`
@@ -63,13 +71,30 @@ export const Text = styled.p`
     `;
   }}
 `;
-export const Main = styled.main`
-  ${({ theme }) => {
+
+export const Main = styled.main<ThemeProps>`
+  ${({ theme, darkTheme }) => {
     return css`
+      position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       flex: 1;
+
+      ${darkTheme
+        ? () =>
+            css`
+              background: ${theme.colors.dark.background};
+              h2 {
+                color: #fff;
+              }
+
+              & form + p {
+                color: #e9e9e9;
+              }
+            `
+        : ""}
 
       ${theme.media.tablet} {
         min-height: 100vh;
@@ -79,6 +104,21 @@ export const Main = styled.main`
     `;
   }}
 `;
+
+export const TogglerContainer = styled.div`
+  ${({ theme }) => {
+    return css`
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      display: flex;
+      justify-content: flex-start;
+
+      width: 100%;
+    `;
+  }}
+`;
+
 export const AuthContainer = styled.div`
   ${({ theme }) => {
     return css`
@@ -132,6 +172,7 @@ export const CreateRoomGoogle = styled.button`
     `;
   }}
 `;
+
 export const GoogleIcon = styled.img`
   ${({ theme }) => {
     return css`
@@ -139,6 +180,7 @@ export const GoogleIcon = styled.img`
     `;
   }}
 `;
+
 export const ButtonText = styled.p`
   ${({ theme }) => {
     return css``;
@@ -205,14 +247,12 @@ export const InputCodeRoom = styled.input`
   }}
 `;
 
-export const SubmitButton = styled.button`
+export const WarnAlreadyClosed = styled.span`
   ${({ theme }) => {
-    return css``;
-  }}
-`;
-
-export const SubmitText = styled.p`
-  ${({ theme }) => {
-    return css``;
+    return css`
+      color: ${theme.colors.red};
+      margin-top: -4px;
+      margin-bottom: ${theme.sizes.tiny};
+    `;
   }}
 `;

@@ -8,6 +8,10 @@ const theme = {
     gray: "#a8a8b3",
     lightGray: "#737380",
     darkGray: "#848482",
+
+    dark: {
+      background: "#1B2221",
+    },
   },
   sizes: {
     tiny: "0.8rem",

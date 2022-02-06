@@ -4,6 +4,14 @@ import { useAuth } from "./useAuth";
 import { database } from "../services/firebase";
 import { onValue, ref } from "firebase/database";
 
+type RoomData = {
+  title: string;
+  authorId: string;
+  questions?: Record<string, Question[]>;
+  closedAt?: Date;
+  closed: boolean;
+};
+
 type Question = {
   id: string;
   author: {
@@ -37,6 +45,7 @@ type FirebaseQuestion = {
 export function useRoom(roomId: string) {
   const { user } = useAuth();
   const [title, setTitle] = useState("");
+  const [roomData, setRoomData] = useState<RoomData>({} as any);
   const [authorId, setAuthorId] = useState("");
   const [questions, setQuestions] = useState<Question[]>([]);
 
@@ -72,9 +81,8 @@ export function useRoom(roomId: string) {
           });
           setQuestions(data);
         }
-        const { title, authorId } = firebaseRawData;
-        setTitle(title);
-        setAuthorId(authorId);
+        const { title, authorId, closedAt } = firebaseRawData;
+        setRoomData({ title, authorId, closed: closedAt ? true : false });
       }
     );
 
@@ -83,5 +91,5 @@ export function useRoom(roomId: string) {
     };
   }, [roomId, user?.id]);
 
-  return { title, authorId, questions };
+  return { ...roomData, questions };
 }

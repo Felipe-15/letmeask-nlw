@@ -204,6 +204,29 @@ export const Username = styled.span`
   }}
 `;
 
+export const Closed = styled.h2`
+  ${({ theme }) => {
+    return css`
+      font-size: ${theme.sizes.xbig};
+      color: ${theme.colors.content};
+
+      margin-bottom: ${theme.sizes.big};
+
+      ${theme.media.mobile} {
+        font-size: ${theme.sizes.big};
+      }
+    `;
+  }}
+`;
+
+export const Emphasis = styled.span`
+  ${({ theme }) => {
+    return css`
+      color: ${theme.colors.red};
+    `;
+  }}
+`;
+
 export const LikeButton = styled.button<LikeButtonProps>`
   ${({ theme, liked }) => {
     return css`

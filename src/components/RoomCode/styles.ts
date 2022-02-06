@@ -36,26 +36,29 @@ export const Container = styled.button<RoomCodeProps>`
         filter: brightness(1.1);
       }
 
-      ${!admin
-        ? () => css`
-            ${theme.media.mobile} {
-              span {
-                width: 14rem;
+      ${
+        !admin
+          ? () => css`
+              ${theme.media.mobile} {
+                span {
+                  width: 14rem;
+                }
               }
-            }
-          `
-        : ""}
+            `
+          : ""
+      }
 
-      ${animation
-        ? () => css`
-            span::after {
-              right: 0;
-            }
-          `
-        : ""}
+      ${
+        animation
+          ? () => css`
+              span::after {
+                right: 0;
+              }
+            `
+          : ""
+      }
 
-      ${admin
-        ? () => css`
+      
         ${theme.media.mobile} {
           position: absolute;
           bottom: ${theme.sizes.small};
@@ -77,8 +80,8 @@ export const Container = styled.button<RoomCodeProps>`
 
             margin-left: ${theme.sizes.tiny};
           }
-      `
-        : ""}
+      
+   
     `;
   }}
 `;

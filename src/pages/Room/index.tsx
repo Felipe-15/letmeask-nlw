@@ -18,6 +18,8 @@ import {
   FormFooter,
   RedirectText,
   LoginButton,
+  Closed,
+  Emphasis,
   QuestionsList,
 } from "./styles";
 
@@ -43,7 +45,7 @@ const Room = () => {
   const { id: roomId } = useParams<RoomParams>();
   const { user } = useAuth();
 
-  const { title, questions } = useRoom(roomId ? roomId : "");
+  const { title, closed, questions } = useRoom(roomId ? roomId : "");
 
   const [newQuestion, setNewQuestion] = useState("");
   const [isSending, setIsSending] = useState(false);
@@ -96,10 +98,11 @@ const Room = () => {
 
   return (
     <Container>
+      {console.log(closed)}
       <Header>
         <HeaderContent>
           <Logo onClick={() => navigate("/")} src={logoImg} alt="Let me Ask" />
-          <RoomCode code={roomId ? roomId : ""} />
+          {!closed && <RoomCode code={roomId ? roomId : ""} />}
         </HeaderContent>
       </Header>
       <Main>
@@ -111,34 +114,41 @@ const Room = () => {
             </Questions>
           )}
         </MainHeader>
-        <Form onSubmit={handleSendQuestion}>
-          <TextArea
-            value={newQuestion}
-            onChange={(event) => setNewQuestion(event.target.value)}
-            placeholder="O que você quer perguntar?"
-          />
-          <FormFooter>
-            {user ? (
-              <UserContainer>
-                <UserAvatar src={user.avatar} alt={user.name} />
-                <Username>{user.name}</Username>
-              </UserContainer>
-            ) : (
-              <RedirectText>
-                Para enviar uma pergunta,{" "}
-                <LoginButton>faça seu login</LoginButton>.
-              </RedirectText>
-            )}
-            <Button disabled={!user} type="submit">
-              {!isSending ? "Enviar pergunta" : <Loading />}
-            </Button>
-          </FormFooter>
-        </Form>
+        {!closed && (
+          <Form onSubmit={handleSendQuestion}>
+            <TextArea
+              value={newQuestion}
+              onChange={(event) => setNewQuestion(event.target.value)}
+              placeholder="O que você quer perguntar?"
+            />
+            <FormFooter>
+              {user ? (
+                <UserContainer>
+                  <UserAvatar src={user.avatar} alt={user.name} />
+                  <Username>{user.name}</Username>
+                </UserContainer>
+              ) : (
+                <RedirectText>
+                  Para enviar uma pergunta,{" "}
+                  <LoginButton>faça seu login</LoginButton>.
+                </RedirectText>
+              )}
+              <Button disabled={!user} type="submit">
+                {!isSending ? "Enviar pergunta" : <Loading />}
+              </Button>
+            </FormFooter>
+          </Form>
+        )}
+        {closed && (
+          <Closed>
+            Essa sala já foi <Emphasis>fechada!</Emphasis>
+          </Closed>
+        )}
         <QuestionsList>
           {questions.map((question) => {
             return (
               <Question key={question.id} {...question}>
-                {!question.isAnswered && (
+                {!question.isAnswered && !closed && (
                   <LikeButton
                     onClick={() =>
                       handleLikeQuestion(

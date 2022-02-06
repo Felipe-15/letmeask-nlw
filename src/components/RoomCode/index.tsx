@@ -19,8 +19,10 @@ const RoomCode = (props: RoomCodeProps) => {
   const [copyAnimation, setCopyAnimation] = useState(false);
 
   const copyRoomCodeToClipboard = () => {
-    setCopyAnimation(true);
-    setTimeout(() => setCopyAnimation(false), 1000);
+    if (window.innerWidth > 480) {
+      setCopyAnimation(true);
+      setTimeout(() => setCopyAnimation(false), 1000);
+    }
 
     navigator.clipboard.writeText(props.code);
   };
