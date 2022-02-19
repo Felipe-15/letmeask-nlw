@@ -11,6 +11,7 @@ const theme = {
 
     dark: {
       background: "#1B2221",
+      headerBg: "#2D3937",
     },
   },
   sizes: {

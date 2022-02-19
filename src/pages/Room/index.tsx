@@ -21,10 +21,11 @@ import {
   Closed,
   Emphasis,
   QuestionsList,
+  RightHeaderContainer,
 } from "./styles";
 
 import { useNavigate, useParams } from "react-router";
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useRoom } from "../../hooks/useRoom";
 
@@ -32,9 +33,13 @@ import { database } from "../../services/firebase";
 import { ref, push, remove } from "firebase/database";
 
 import logoImg from "../../images/logo.svg";
+import logoDarkImg from "../../images/logo-darkTheme.svg";
+
 import Button from "../../components/Button";
 import RoomCode from "../../components/RoomCode";
 import Question from "../../components/Question";
+import DarkThemeToggler from "../../components/DarkThemeToggler";
+import { DarkThemeContext } from "../../contexts/DarkThemeContext";
 
 type RoomParams = {
   id: string;
@@ -45,7 +50,8 @@ const Room = () => {
   const { id: roomId } = useParams<RoomParams>();
   const { user } = useAuth();
 
-  const { title, closed, questions } = useRoom(roomId ? roomId : "");
+  const { title, closed, questions, exist } = useRoom(roomId ? roomId : "");
+  const { isDark } = useContext(DarkThemeContext);
 
   const [newQuestion, setNewQuestion] = useState("");
   const [isSending, setIsSending] = useState(false);
@@ -97,12 +103,18 @@ const Room = () => {
   };
 
   return (
-    <Container>
-      {console.log(closed)}
+    <Container darkTheme={isDark}>
       <Header>
         <HeaderContent>
-          <Logo onClick={() => navigate("/")} src={logoImg} alt="Let me Ask" />
-          {!closed && <RoomCode code={roomId ? roomId : ""} />}
+          <Logo
+            onClick={() => navigate("/")}
+            src={isDark ? logoDarkImg : logoImg}
+            alt="Let me Ask"
+          />
+          <RightHeaderContainer>
+            {!closed && <RoomCode code={roomId ? roomId : ""} />}
+            <DarkThemeToggler />
+          </RightHeaderContainer>
         </HeaderContent>
       </Header>
       <Main>

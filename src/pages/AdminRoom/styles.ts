@@ -4,8 +4,12 @@ interface OptionButtonProps {
   optionType: "answer" | "check" | "delete";
 }
 
-export const Container = styled.div`
-  ${({ theme }) => {
+interface DarkThemeProps {
+  darkTheme: boolean;
+}
+
+export const Container = styled.div<DarkThemeProps>`
+  ${({ theme, darkTheme }) => {
     return css`
       height: 100vh;
       width: 100vw;
@@ -19,6 +23,24 @@ export const Container = styled.div`
           padding: 0 ${theme.sizes.medium};
         }
       }
+
+      ${darkTheme
+        ? () => css`
+            background: ${theme.colors.dark.background};
+            & header {
+              background: ${theme.colors.dark.background};
+            }
+
+            & main {
+              background: ${theme.colors.dark.background};
+
+              h1,
+              h2 {
+                color: #fff;
+              }
+            }
+          `
+        : ""}
     `;
   }}
 `;
@@ -57,8 +79,8 @@ export const HeaderButtonsContainer = styled.div`
       align-items: center;
       justify-content: center;
 
-      & button {
-        margin-left: ${theme.sizes.small};
+      & button ~ button {
+        margin: 0 ${theme.sizes.small};
       }
 
       ${theme.media.tablet} {

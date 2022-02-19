@@ -91,5 +91,5 @@ export function useRoom(roomId: string) {
     };
   }, [roomId, user?.id]);
 
-  return { ...roomData, questions };
+  return { ...roomData, questions, exist: roomData.title ? true : false };
 }

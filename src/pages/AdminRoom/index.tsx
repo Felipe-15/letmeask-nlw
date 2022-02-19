@@ -20,17 +20,20 @@ import { database } from "../../services/firebase";
 import { ref, remove, update } from "firebase/database";
 
 import { useNavigate, useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useRoom } from "../../hooks/useRoom";
 
 import logoImg from "../../images/logo.svg";
+import logoDarkImg from "../../images/logo-darkTheme.svg";
 
 import Button from "../../components/Button";
 import RoomCode from "../../components/RoomCode";
 import Question from "../../components/Question";
 import DeleteQuestionModal from "../../components/DeleteQuestionModal";
 import PermissionDenied from "../../components/PermissionDenied";
+import DarkThemeToggler from "../../components/DarkThemeToggler";
+import { DarkThemeContext } from "../../contexts/DarkThemeContext";
 
 type RoomParams = {
   id: string;
@@ -44,6 +47,7 @@ const AdminRoom = () => {
   const { user } = useAuth();
 
   const { title, authorId, questions, closed } = useRoom(roomId ? roomId : "");
+  const { isDark } = useContext(DarkThemeContext);
 
   const [modal, setModal] = useState<ModalStates>([false, ""]);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -93,7 +97,7 @@ const AdminRoom = () => {
   return (
     <>
       {authorId === user?.id ? (
-        <Container>
+        <Container darkTheme={isDark}>
           {modal[0] && (
             <DeleteQuestionModal
               isDeleting={isDeleting}
@@ -106,7 +110,7 @@ const AdminRoom = () => {
             <HeaderContent>
               <Logo
                 onClick={() => navigate("/")}
-                src={logoImg}
+                src={isDark ? logoDarkImg : logoImg}
                 alt="Let me Ask"
               />
               {!closed && (
@@ -115,6 +119,7 @@ const AdminRoom = () => {
                   <Button onClick={handleCloseRoom} isOutlined>
                     Encerrar sala
                   </Button>
+                  <DarkThemeToggler />
                 </HeaderButtonsContainer>
               )}
             </HeaderContent>
@@ -236,20 +241,20 @@ const AdminRoom = () => {
           </Main>
         </Container>
       ) : user?.id && authorId && authorId.trim() !== "" ? (
-        <Container>
+        <Container darkTheme={isDark}>
           <Header>
             <HeaderContent>
               <Logo
                 onClick={() => navigate("/")}
-                src={logoImg}
+                src={isDark ? logoDarkImg : logoImg}
                 alt="Let me Ask"
               />
             </HeaderContent>
           </Header>
-          <PermissionDenied />
+          <PermissionDenied darkTheme={isDark} />
         </Container>
       ) : (
-        <Container>
+        <Container darkTheme={isDark}>
           <Header>
             <HeaderContent>
               <Logo

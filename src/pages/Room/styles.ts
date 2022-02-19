@@ -4,8 +4,12 @@ interface LikeButtonProps {
   liked?: boolean;
 }
 
-export const Container = styled.div`
-  ${({ theme }) => {
+interface DarkThemeProps {
+  darkTheme: boolean;
+}
+
+export const Container = styled.div<DarkThemeProps>`
+  ${({ theme, darkTheme }) => {
     return css`
       height: 100vh;
       width: 100vw;
@@ -21,6 +25,28 @@ export const Container = styled.div`
           padding: 0 ${theme.sizes.medium};
         }
       }
+
+      ${darkTheme
+        ? () => css`
+            background: ${theme.colors.dark.background};
+            & header {
+              background: ${theme.colors.dark.background};
+              border-bottom-color: #444;
+            }
+
+            & main {
+              background: ${theme.colors.dark.background};
+
+              h1 {
+                color: #fff;
+              }
+
+              form span {
+                color: #aaa;
+              }
+            }
+          `
+        : ""}
     `;
   }}
 `;
@@ -48,6 +74,20 @@ export const HeaderContent = styled.div`
 
       max-width: 112rem;
       margin: 0 auto;
+    `;
+  }}
+`;
+
+export const RightHeaderContainer = styled.div`
+  ${({ theme }) => {
+    return css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button ~ div {
+        margin-left: ${theme.sizes.medium};
+      }
     `;
   }}
 `;
@@ -297,6 +337,8 @@ export const LoginButton = styled.button`
 
 export const QuestionsList = styled.div`
   ${({ theme }) => {
-    return css``;
+    return css`
+      padding-bottom: ${theme.sizes.xsmall};
+    `;
   }}
 `;

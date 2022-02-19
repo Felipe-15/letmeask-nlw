@@ -22,6 +22,7 @@ import { Subtitle, ChangeScreen } from "./styles";
 
 import illustrationImg from "../../images/illustration.svg";
 import logoImg from "../../images/logo.svg";
+import logoDarkImg from "../../images/logo-darkTheme.svg";
 import Button from "../../components/Button";
 import { useAuth } from "../../hooks/useAuth";
 import { DarkThemeContext } from "../../contexts/DarkThemeContext";
@@ -64,7 +65,7 @@ const NewRoom = () => {
           <DarkThemeToggler />
         </TogglerContainer>
         <AuthContainer>
-          <Logo src={logoImg} alt="Let Me Ask" />
+          <Logo src={isDark ? logoDarkImg : logoImg} alt="Let Me Ask" />
           <Subtitle>Criar uma nova sala</Subtitle>
           <Form onSubmit={handleCreateRoom}>
             <InputCodeRoom

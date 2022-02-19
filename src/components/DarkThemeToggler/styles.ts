@@ -15,12 +15,18 @@ export const SwitchContainer = styled.div<SwitchProps>`
     return css`
       position: relative;
 
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
       width: ${theme.sizes.huge};
       height: ${theme.sizes.medium};
 
       border-radius: 9999px;
 
       cursor: pointer;
+
+      padding: 0 ${theme.sizes.tiny};
 
       margin-right: ${theme.sizes.xsmall};
 
@@ -51,6 +57,17 @@ export const SwitchContainer = styled.div<SwitchProps>`
               color: #f1f1f1;
             }
           `};
+    `;
+  }}
+`;
+
+export const Icon = styled.img`
+  ${({ theme }) => {
+    return css`
+      align-self: center;
+
+      height: ${theme.sizes.small};
+      width: auto;
     `;
   }}
 `;

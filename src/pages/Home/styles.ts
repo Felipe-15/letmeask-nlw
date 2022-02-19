@@ -82,6 +82,8 @@ export const Main = styled.main<ThemeProps>`
       justify-content: center;
       flex: 1;
 
+      transition: background-color 0.2s ease-in-out;
+
       ${darkTheme
         ? () =>
             css`
@@ -110,9 +112,9 @@ export const TogglerContainer = styled.div`
     return css`
       position: absolute;
       top: 16px;
-      left: 24px;
+      right: 24px;
       display: flex;
-      justify-content: flex-start;
+      justify-content: flex-end;
 
       width: 100%;
     `;

@@ -1,7 +1,11 @@
 import styled, { css } from "styled-components";
 
-export const Container = styled.div`
-  ${({ theme }) => {
+interface DarkThemeProps {
+  darkTheme: boolean;
+}
+
+export const Container = styled.div<DarkThemeProps>`
+  ${({ theme, darkTheme }) => {
     return css`
       display: flex;
       flex-direction: column;
@@ -9,6 +13,18 @@ export const Container = styled.div`
       justify-content: center;
 
       padding-top: 16rem;
+
+      ${darkTheme
+        ? () => css`
+            & h1 {
+              color: #fff;
+            }
+
+            & span {
+              color: #ddd;
+            }
+          `
+        : ""}
 
       a {
         color: ${theme.colors.secondary};
