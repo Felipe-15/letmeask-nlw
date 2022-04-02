@@ -13,3 +13,19 @@ O projeto consiste em um **Q&A Real-time**, ou seja, uma aplicação de pergunta
 A aplicação tem a possibilidade de criação de salas por meio de login com conta Google, sem login é possível apenas entrar em alguma sala aberta, mas não é possível mandar mensagens enquanto estiver sem login. Para banco de dados e "listening" de mudanças nas salas como novas perguntas é usado o Firebase Database Realtime que conta com várias funções para webhooks que permitem com mais facilidade que o app seja realtime, e é usado também o Google Auth Provider oferecido pelo mesmo para que o login seja rápido e fácil.
 
 ## Preview
+
+### Enter Room
+
+<img src="./previews/enter-room.png" alt="Enter room image preview" />
+<img src="./previews/enter-room-mobile.png" alt="Enter room mobile responsivity image preview" />
+
+### Guest Room
+
+<img src="./previews/guest-room.png" alt="Guest room image preview" />
+<img src="./previews/guest-room-mobile.png" alt="Enter room mobile responsivity image preview" />
+<img src="./previews/guest-room-dark.png" alt="Enter room dark theme image preview" />
+
+### Admin Room
+
+<img src="./previews/admin-room.png" alt="Admin room image preview" />
+<img src="./previews/admin-room-mobile.png" alt="Admin room image preview" />
